@@ -169,9 +169,6 @@ void Init_SintMate(void)
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
 	HAL_Delay(200);
 	StepperInit();
-	/* FIL */
-	//SetCounter(10);
-	/* FIL */
 }
 
 extern	uint16_t nfc_active[], nfc_inactive[], nfc_fail[], nfc_ok[];
@@ -345,9 +342,6 @@ void SintMateLoop(void)
 						first_homing = 0;
 					SystemVar.DownCounter = SystemVar.Session_DownCounter;
 					SetCounter(SystemVar.DownCounter);
-					/* FIL */
-					SetCounter(10);
-					/* FIL */
 					SystemVar.run_state = RUN_STATE_IDLE;
 					DrawIdleButtons();
 					while(ringled_frame_complete == 0);
