@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1633434859 source:/Devel/Stm32Sw/SintMate/Tools/bmp2ili/main.c
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+

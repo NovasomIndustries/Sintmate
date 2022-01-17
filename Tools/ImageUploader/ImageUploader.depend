@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1633434859 source:/Devel/Stm32Sw/SintMate/Tools/ImageUploader/Src/bmp_convert.c
+	<stdio.h>
+	<string.h>
+	<fcntl.h>
+	<errno.h>
+	<termios.h>
+	<unistd.h>
+	"ImageUploader.h"
+
+1633434859 /Devel/Stm32Sw/SintMate/Tools/ImageUploader/Include/ImageUploader.h
+
+1638356999 source:/Devel/Stm32Sw/SintMate/Tools/ImageUploader/Src/serial.c
+	<stdio.h>
+	<string.h>
+	<fcntl.h>
+	<errno.h>
+	<termios.h>
+	<unistd.h>
+	<time.h>
+	"ImageUploader.h"
+
+1638370463 source:/Devel/Stm32Sw/SintMate/Tools/ImageUploader/Src/main.c
+	<stdio.h>
+	<string.h>
+	<fcntl.h>
+	<errno.h>
+	<termios.h>
+	<unistd.h>
+	"ImageUploader.h"
+
