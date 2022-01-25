@@ -265,6 +265,13 @@ void SintMateLoop(void)
 			if ( SintMate_Get_Card() == 0 )
 			{
 				SintMate_ClearNFC();
+				HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
+				HAL_Delay(500);
+				HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
+				HAL_Delay(200);
+				HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
+				HAL_Delay(500);
+				HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
 				SintMate_do_rotations(((OC_PULSES_PER_ROTATION*SystemParameters.step_rpm)/60)*SystemVar.DownCounter);
 				SystemVar.run_state = RUN_STATE_RUNNING;
 				DrawPlayButtons();
