@@ -104,7 +104,7 @@ char		message[32];
 	case	TOUCH_CALLBACK_SECPLUS	:
 		if ( SystemParameters.max_running_time < DOWNCOUNTER_MAX )
 		{
-			SystemParameters.max_running_time++;
+			SystemParameters.max_running_time+=10;
 			//ypos +=	LINE_YPOS_DELTA;
 			sprintf(message,"Time : %d",(int )SystemParameters.max_running_time);
 			ILI9341_WriteString(xpos, ypos+TEXT_YPOS_DELTA, message, Font_11x18, ILI9341_BLUE, ILI9341_BLACK);
@@ -114,7 +114,7 @@ char		message[32];
 	case	TOUCH_CALLBACK_SECMINUS	:
 		if ( SystemParameters.max_running_time > DOWNCOUNTER_MIN )
 		{
-			SystemParameters.max_running_time--;
+			SystemParameters.max_running_time-=10;
 			//ypos +=	LINE_YPOS_DELTA;
 			sprintf(message,"Time : %d",(int )SystemParameters.max_running_time);
 			ILI9341_WriteString(xpos, ypos+TEXT_YPOS_DELTA, message, Font_11x18, ILI9341_BLUE, ILI9341_BLACK);

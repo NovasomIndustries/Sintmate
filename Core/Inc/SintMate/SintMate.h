@@ -43,6 +43,7 @@ extern	TIM_HandleTypeDef htim8;
 extern	TIM_HandleTypeDef htim16;
 extern	TIM_HandleTypeDef htim5;
 extern	TIM_HandleTypeDef htim7;
+extern	TIM_HandleTypeDef htim6;
 extern	SPI_HandleTypeDef hspi1;
 extern	SPI_HandleTypeDef hspi6;
 extern	I2C_HandleTypeDef hi2c2;
@@ -55,6 +56,7 @@ extern	UART_HandleTypeDef huart7;
 #define	STEPPER_TIMER			htim16
 #define	STEPPER_TIMER_CHANNEL	TIM_CHANNEL_1
 #define	TICK100MS_TIMER			htim7
+#define	TICK15_8MS_TIMER		htim6
 
 #define	FlashSPIport	hspi6
 #define	LcdSPIport		hspi1
@@ -98,6 +100,7 @@ typedef struct _SystemVarDef
 	uint32_t 				touch_disable_window;
 	uint32_t 				lcd_dma_busy;
 	uint32_t 				counter;
+	uint32_t 				counter_flag15_8Ms;
 	uint32_t 				counter_flag100Ms;
 	uint32_t 				counter_flag1000Ms;
 	uint32_t 				doubletouch_flag;
@@ -150,7 +153,7 @@ typedef struct _SystemLogsTypeDef
 	uint32_t 				time[LOG_MAX_DEPTH];
 }SystemLogsTypeDef;
 
-
+/*
 #define	WORM_R_RUNNING	0x00
 #define	WORM_G_RUNNING	0x1f
 #define	WORM_B_RUNNING	0x00
@@ -158,10 +161,19 @@ typedef struct _SystemLogsTypeDef
 #define	WORM_R_FINISHING	0x00
 #define	WORM_G_FINISHING	0x00
 #define	WORM_B_FINISHING	0x1f
-
+*/
 #define	WORM_R_ERROR		0x1f
 #define	WORM_G_ERROR		0x00
 #define	WORM_B_ERROR		0x00
+
+#define	WORM_R_RUNNING	0x00
+#define	WORM_G_RUNNING	0x00
+#define	WORM_B_RUNNING	0x1f
+
+#define	WORM_R_FINISHING	0x00
+#define	WORM_G_FINISHING	0x1f
+#define	WORM_B_FINISHING	0x00
+
 
 #define	WORMLEN				6
 
@@ -172,7 +184,7 @@ extern	SystemLogsTypeDef		SystemLogs;
 extern	void Init_SintMate(void);
 extern	void SintMateLoop(void);
 extern	void SintMate_SystemSetDefaults(void);
-
+extern	void Tim15_8MSec_callback(void);
 
 #define	DIGIT_GREEN			1
 #define	DIGIT_RED			1

@@ -93,6 +93,7 @@ void InitCounter(void)
 void DecrementCounter(void)
 {
 	SystemVar.DownCounter--;
+	/*
 	if (SystemVar.DownCounter < 31 )
 	{
 		SystemVar.worm_r = WORM_R_FINISHING;
@@ -105,6 +106,7 @@ void DecrementCounter(void)
 		SystemVar.worm_g = WORM_G_RUNNING;
 		SystemVar.worm_b = WORM_B_RUNNING;
 	}
+	*/
 	if (SystemVar.DownCounter == 0 )
 	{
 		/*
@@ -113,10 +115,11 @@ void DecrementCounter(void)
 		SystemVar.run_state = RUN_STATE_IDLE;
 		DrawIdleButtons();
 		WS2812_LedsOff();
-		SystemVar.worm_r = WORM_R_RUNNING;
-		SystemVar.worm_g = WORM_G_RUNNING;
-		SystemVar.worm_b = WORM_B_RUNNING;
+		SystemVar.worm_r = WORM_R_FINISHING;
+		SystemVar.worm_g = WORM_G_FINISHING;
+		SystemVar.worm_b = WORM_B_FINISHING;
 		*/
+
 		SintMate_stop_rotations();
 		SintMate_do_homing_steps();
 		SystemVar.run_state = RUN_STATE_HOMING;

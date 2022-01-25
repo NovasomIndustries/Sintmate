@@ -20,6 +20,11 @@ SystemParametersTypeDef	SystemParameters;
 SystemVarDef			SystemVar;
 SystemLogsTypeDef		SystemLogs;
 
+void Tim15_8MSec_callback(void)
+{
+	SystemVar.counter_flag15_8Ms = 1;
+}
+
 void SintMate_SystemSetDefaults(void)
 {
 	bzero((uint8_t *)&SystemParameters,sizeof(SystemParameters));
@@ -169,6 +174,7 @@ void Init_SintMate(void)
 	HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);
 	HAL_Delay(200);
 	StepperInit();
+	HAL_TIM_Base_Start_IT(&TICK15_8MS_TIMER);
 }
 
 extern	uint16_t nfc_active[], nfc_inactive[], nfc_fail[], nfc_ok[];
@@ -208,6 +214,19 @@ uint8_t	initial_delay=0 , first_homing=1;
 #define	TESTING	1
 void SintMateLoop(void)
 {
+	if ( SystemVar.counter_flag15_8Ms == 1 )
+	{
+		if (SystemVar.run_state == RUN_STATE_RUNNING)
+		{
+			if (ringled_frame_complete == 1)
+			{
+				ringled_frame_complete=0;
+				WS2812_Worm(SystemVar.worm_r,SystemVar.worm_g,SystemVar.worm_b);
+			}
+		}
+		SystemVar.counter_flag15_8Ms = 0;
+	}
+
 	if ( SystemVar.counter_flag100Ms == 1 )
 	{
 		initial_delay++;
@@ -298,11 +317,6 @@ void SintMateLoop(void)
 			{
 				SystemVar.counter_flag1000Ms = 0;
 				DecrementCounter();
-			}
-			if (ringled_frame_complete == 1)
-			{
-				ringled_frame_complete=0;
-				WS2812_Worm(SystemVar.worm_r,SystemVar.worm_g,SystemVar.worm_b);
 			}
 			SystemVar.homing_time = SystemVar.homing_timeout = SystemVar.homing_counter_1000ms = 0;
 		}
